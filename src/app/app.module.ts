@@ -10,7 +10,6 @@ import { ProductsListModule } from './modules/products-list/products-list.module
 @NgModule({
 	declarations: [AppComponent],
 	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HeaderModule, ProductsListModule],
-	// providers: [],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
