@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IApplicationConfig } from '../../shared/application-config/application-config.interface';
 
 @Component({
@@ -9,8 +8,5 @@ import { IApplicationConfig } from '../../shared/application-config/application-
 })
 export class HeaderComponent {
 	@Input() applicationConfig: IApplicationConfig | undefined;
-
 	@Output() menuClick = new EventEmitter<string | undefined>(true);
-
-	// readonly imgSrc = 'Angular-learnjs-171022';
 }

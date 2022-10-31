@@ -1,11 +1,4 @@
 <mat-drawer-container class="example-container" autosize>
-    <!-- <mat-drawer
-      #drawer
-      class="example-sidenav"
-      mode="side"
-      [opened]="isDrawerOpened"
-      (openedChange)="isDrawerOpenedChange.emit($event)"
-    > -->
     <mat-drawer
       #drawer
       class="example-sidenav"
@@ -15,17 +8,11 @@
     </mat-drawer>
   
     <div #divElement class="example-sidenav-content">
-      <!-- <button
-        type="button"
-        mat-button
-        (click)="isDrawerOpenedChange.emit(!isDrawerOpened)"
-      > -->
       <button
         type="button"
         mat-button
         (click)="togleDrawer()"
       >
-        <!-- {{divElement.className}} -->
         Toggle sidenav
       </button>
     </div>

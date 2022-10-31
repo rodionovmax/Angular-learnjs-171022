@@ -7,12 +7,5 @@ import { applicationConfigMock } from './shared/application-config/application-c
 	styleUrls: ['./app.component.less'],
 })
 export class AppComponent {
-	// readonly title = 'Angular-learnjs-171022';
 	readonly applicationConfig = applicationConfigMock;
-
-	// isDrawerOpened = false;
-
-	// onMenuClick() {
-	// 	this.isDrawerOpened = !this.isDrawerOpened
-	// }
 }
