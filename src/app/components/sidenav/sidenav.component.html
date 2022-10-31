@@ -4,17 +4,22 @@
       class="example-sidenav"
       mode="side"
     >
-        <p>Auto-resizing sidenav</p>
+        <p #p>Auto-resizing sidenav 1</p>
+        <p #p>Auto-resizing sidenav 2</p>
+        <p #p>Auto-resizing sidenav 3</p>
+        <p #p>Auto-resizing sidenav 4</p>
+        <p #p>Auto-resizing sidenav 5</p>
+        <!-- <div #viewport></div> -->
+        <ng-container #viewport></ng-container>
+
+        <!-- <ng-content select="list-mat"></ng-content> -->
+        <!-- <ng-content select="mat-list"></ng-content> -->
+        <!-- <ng-content select="[role='list']"></ng-content> -->
+        <!-- <ng-content select="p"></ng-content> -->
     </mat-drawer>
   
     <div #divElement class="example-sidenav-content">
-      <button
-        type="button"
-        mat-button
-        (click)="togleDrawer()"
-      >
-        Toggle sidenav
-      </button>
+      <ng-content></ng-content>
     </div>
   
 </mat-drawer-container>
