@@ -1,4 +1,24 @@
-<div class="container">
-        <app-product-card class="product"></app-product-card>
-        <app-product-card class="product"></app-product-card>
-</div>
+<!-- <ng-template [ngIf]="product" [ngIfThen]="productsList" [ngIfElse]="loader"></ng-template>
+
+<ng-template #productsList>
+        <div class="container">
+                <app-product-card class="product" [product]="product"></app-product-card>
+                <app-product-card class="product" [product]="product"></app-product-card>
+        </div>
+</ng-template> -->
+<!-- <ng-template [ngIf]="product && [product, product]" [ngIfElse]="loader" let-defaultContext let-products="ngIf" let-name="toString"> -->
+<ng-template 
+        let-products
+        [ngIf]="product && [product, product]"
+        [ngIfElse]="loader"
+>
+        <!-- {{defaultContext === products}} -->
+        <div class="container">
+                <app-product-card class="product" [product]="products[0]"></app-product-card>
+                <app-product-card class="product" [product]="products[1]"></app-product-card>
+        </div>
+</ng-template>
+
+<ng-template #loader>
+        <mat-spinner></mat-spinner>
+</ng-template>

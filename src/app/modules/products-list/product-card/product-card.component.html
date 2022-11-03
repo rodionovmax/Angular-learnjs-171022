@@ -4,17 +4,19 @@
       <mat-card-subtitle>{{price}} $</mat-card-subtitle>
     </mat-card-header>
     <div class="galerey">
-        <button mat-icon-button>
+      <ng-template let-image let-next="next" let-back="back" [appCarousel]="product?.images">
+        <button mat-icon-button (click)="back()">
           <mat-icon>
             chevron_left
           </mat-icon>
         </button>
-        <img mat-card-image [src]="firstImgUrl" alt="Product photo">
-        <button mat-icon-button>
+        <img mat-card-image [src]="image.url" alt="Product photo">
+        <button mat-icon-button (click)="next()">
           <mat-icon>
             chevron_right
           </mat-icon>
         </button>
+      </ng-template>
     </div>
     <div>
       <p>

@@ -6,7 +6,28 @@
 ></app-header>
 <!-- <app-sidenav #sidenav [navigationTemplate]="navigation"> -->
 <app-sidenav #sidenav>
-    <input #input type="text">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Search</mat-label>
+        <input #input matInput>
+    </mat-form-field>
+    <app-products-list></app-products-list>
+    <!-- <p
+        [ngClass]="{
+            'search-active': +input.value >= 2,
+            'search-has-secret': input.value === '123'
+        }"
+    >
+        {{input.value}}
+    </p> -->
+    <!-- <p
+        [appNgClass]="{
+            'search-active': +input.value >= 2,
+            'search-has-secret': input.value === '123'
+        }"
+    >
+        {{input.value}}
+    </p> -->
+    <!-- <p appInsertShadow>Test</p> -->
 
     <!-- <div ngProjectAs="naviagation">
         <p>History</p>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IProduct } from '../../../shared/products/product.interface';
 
 @Component({
@@ -12,7 +12,7 @@ export class ProductCardComponent {
 	@Output() productBuy = new EventEmitter<IProduct['_id'] | undefined>();
 
 	get firstImgUrl(): string {
-		return this.product?.images[0].url || '';
+		return this.product?.images[1].url || '';
 	}
 
 	get price(): string {
@@ -22,6 +22,10 @@ export class ProductCardComponent {
 	get feedbacksCount(): string {
 		return this.product?.feedbacksCount.toString() || '-';
 	}
+
+	// ngOnInit() {
+	// 	console.log('ngOnInit')
+	// }
 
 	onProductBuy(event: Event) {
 		event.stopPropagation();
