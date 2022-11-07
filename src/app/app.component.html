@@ -1,55 +1,22 @@
 <app-header
-    style="display: block;"
-    size="m"
-    [applicationConfig]="applicationConfig"
-    (menuClick)="sidenav.togleDrawer()"
+	style="display: block"
+	size="m"
+	[applicationConfig]="applicationConfig"
+	(menuClick)="sidenav.togleDrawer()"
 ></app-header>
-<!-- <app-sidenav #sidenav [navigationTemplate]="navigation"> -->
 <app-sidenav #sidenav>
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Search</mat-label>
-        <input #input matInput>
-    </mat-form-field>
-    <app-products-list></app-products-list>
-    <!-- <p
-        [ngClass]="{
-            'search-active': +input.value >= 2,
-            'search-has-secret': input.value === '123'
-        }"
-    >
-        {{input.value}}
-    </p> -->
-    <!-- <p
-        [appNgClass]="{
-            'search-active': +input.value >= 2,
-            'search-has-secret': input.value === '123'
-        }"
-    >
-        {{input.value}}
-    </p> -->
-    <!-- <p appInsertShadow>Test</p> -->
+	<mat-form-field appearance="fill" class="example-full-width">
+		<mat-label>Search</mat-label>
+		<input #input matInput />
+	</mat-form-field>
 
-    <!-- <div ngProjectAs="naviagation">
-        <p>History</p>
-        <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
-        </mat-list>
-    </div> -->
-    <ng-template #navigation>
-        <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
-        </mat-list>
-    </ng-template>
+	<app-products-list></app-products-list>
+
+	<ng-template #navigation>
+		<mat-list role="list">
+			<mat-list-item role="listitem">Item 1</mat-list-item>
+			<mat-list-item role="listitem">Item 2</mat-list-item>
+			<mat-list-item role="listitem">Item 3</mat-list-item>
+		</mat-list>
+	</ng-template>
 </app-sidenav>
-<!-- 
-<ng-template #navigation>
-    <mat-list role="list">
-        <mat-list-item role="listitem">Item 1</mat-list-item>
-        <mat-list-item role="listitem">Item 2</mat-list-item>
-        <mat-list-item role="listitem">Item 3</mat-list-item>
-    </mat-list>
-</ng-template> -->

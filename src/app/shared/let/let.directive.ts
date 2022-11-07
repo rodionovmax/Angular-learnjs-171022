@@ -5,8 +5,6 @@ interface ILetContext<T> {
 	appLet: T;
 }
 
-// <ng-template let-products [appLet]="getProducts()">...</ng-template>
-
 @Directive({
 	selector: '[appLet]',
 })
