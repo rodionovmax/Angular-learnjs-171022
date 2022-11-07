@@ -1,7 +1,33 @@
-<div *ngIf="products; else loader" class="container">
-	<ng-container
+<!-- <ng-template
+	let-allProducts
+	let-ngIfInputValue="ngIf"
+	[ngIf]="products"
+	[ngIfElse]="loader"
+>
+	<div class="container"> -->
+<!-- <div *ngIf="products; else loader; let allProducts; let ngIfInputValue = ngIf" class="container"> -->
+<div
+	*ngIf="products as ngIfInputValue; else loader; let allProducts"
+	class="container"
+>
+	<!-- <ng-template
+		appPagination
+		let-productsGroup
+		let-allIndexes="allIndexes";
+		let-activeIndex="index";
+		let-nextItem="nextItem";
+		let-backItem="backItem";
+		let-selectIndex="selectIndex";
+		[appPaginationOf]="products"
+		[appPaginationElementsSize]="4"
+	>
+		...
+	</ng-template> -->
+
+	<!-- <ng-container
 		*appPagination="
-			let productsGroup of products;
+			let productsGroup;
+			of: products;
 			elementsSize: 4;
 			let allIndexes = allIndexes;
 			let activeIndex = index;
@@ -9,27 +35,30 @@
 			let backItem = backItem;
 			let selectIndex = selectIndex
 		"
-	>
-		<div class="card-container">
-			<app-product-card
-				class="product"
-				[product]="productsGroup[0]"
-			></app-product-card>
-			<app-product-card
-				class="product"
-				[product]="productsGroup[1]"
-			></app-product-card>
-			<app-product-card
-				class="product"
-				[product]="productsGroup[2]"
-			></app-product-card>
-			<app-product-card
-				class="product"
-				[product]="productsGroup[3]"
-			></app-product-card>
-		</div>
+	> -->
 
-		<div class="pagination-container">
+	<!-- <ng-container
+		*appPagination="
+			'appPagination' as appPaginationIputValue
+			of: products;
+			elementsSize: 4 as appPaginationElementSizeInputValue;
+			let productsGroup;
+			let allIndexes = allIndexes;
+			let activeIndex = index;
+			let nextItem = nextItem;
+			let backItem = backItem;
+			let selectIndex = selectIndex;
+		"
+	> -->
+	<div class="card-container">
+		<app-product-card
+			*ngFor="let product of products; trackBy: trackBy"
+			class="product"
+			[product]="product"
+		></app-product-card>
+	</div>
+
+	<!-- <div class="pagination-container">
 			<button mat-icon-button (click)="backItem()">
 				<mat-icon> chevron_left </mat-icon>
 			</button>
@@ -45,9 +74,10 @@
 			<button mat-icon-button (click)="nextItem()">
 				<mat-icon> chevron_right </mat-icon>
 			</button>
-		</div>
-	</ng-container>
+		</div> -->
+	<!-- </ng-container> -->
 </div>
+<!-- </ng-template> -->
 
 <ng-template #loader>
 	<mat-spinner class="loader"></mat-spinner>

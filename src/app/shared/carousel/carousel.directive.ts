@@ -51,7 +51,6 @@ export class CarouselDirective<T> implements OnInit, OnDestroy {
 				takeUntil(this.destroy$),
 			)
 			.subscribe(context => {
-				console.log(context);
 				this.viewContainer.clear();
 				this.viewContainer.createEmbeddedView(this.template, context);
 			});
