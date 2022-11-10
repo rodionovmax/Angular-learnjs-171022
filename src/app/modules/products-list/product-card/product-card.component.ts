@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { IProduct } from '../../../shared/products/product.interface';
 
 @Component({
@@ -7,7 +7,7 @@ import { IProduct } from '../../../shared/products/product.interface';
 	styleUrls: ['./product-card.component.less'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
 	@Input() product: IProduct | undefined;
 	@Output() productBuy = new EventEmitter<IProduct['_id'] | undefined>();
 
@@ -31,9 +31,5 @@ export class ProductCardComponent implements OnInit {
 
 	isStarActive(starIndex: number): boolean {
 		return Boolean(this.product && this.product.rating >= starIndex);
-	}
-
-	ngOnInit(): void {
-		console.log('ngOnInit');
 	}
 }
