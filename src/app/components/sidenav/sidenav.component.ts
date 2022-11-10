@@ -3,6 +3,7 @@ import {
 	ChangeDetectorRef,
 	Component,
 	ContentChild,
+	Inject,
 	OnInit,
 	TemplateRef,
 	ViewChild,
@@ -15,6 +16,12 @@ import { MatDrawer } from '@angular/material/sidenav';
 	templateUrl: './sidenav.component.html',
 	styleUrls: ['./sidenav.component.less'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [
+		{
+			provide: 'name',
+			useValue: 'SidenavComponent',
+		},
+	],
 })
 export class SidenavComponent implements OnInit {
 	@ViewChild(MatDrawer, { static: true })
@@ -25,7 +32,10 @@ export class SidenavComponent implements OnInit {
 	@ContentChild('navigation', { static: true })
 	private readonly navigationContentTemplate!: TemplateRef<unknown>;
 
-	constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
+	constructor(
+		// @Inject(ChangeDetectorRef) private readonly changeDetectorRef: ChangeDetectorRef,
+		private readonly changeDetectorRef: ChangeDetectorRef,
+	) {}
 
 	ngOnInit() {
 		this.viewport.createEmbeddedView(this.navigationContentTemplate);

@@ -5,10 +5,13 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { NgIfModule } from '../../shared/ng-if/ng-if.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CarouselModule } from '../../shared/carousel/carousel.module';
 import { PaginationModule } from '../../shared/pagination/pagination.module';
+import { ToJsonModule } from '../../shared/to-json/to-json.module';
+import { ProductsStoreService } from '../../shared/products/products-store.service';
 
 @NgModule({
 	declarations: [ProductsListComponent, ProductCardComponent],
@@ -21,7 +24,15 @@ import { PaginationModule } from '../../shared/pagination/pagination.module';
 		MatProgressSpinnerModule,
 		CarouselModule,
 		PaginationModule,
+		ToJsonModule,
+		MatInputModule,
 	],
+	// providers: [
+	// 	{
+	// 		provide: ProductsStoreService,
+	// 		useValue: {},
+	// 	}
+	// ],
 	exports: [ProductsListComponent],
 })
 export class ProductsListModule {}
