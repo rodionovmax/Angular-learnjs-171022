@@ -3,13 +3,6 @@
 	<input #input matInput />
 </mat-form-field>
 
-{{ input.value }}
-
-<!-- {{value | toJson : 'prefix'}}
-{{getJson(value)}} -->
-<!-- {{ (products$ | async) | json }} -->
-<!-- {{ json(async(products$)) }} -->
-
 <div *ngIf="products$ | async as products; else loader" class="container">
 	<ng-container
 		*appPagination="
@@ -28,10 +21,6 @@
 				class="product"
 				[product]="product"
 			></app-product-card>
-			<!-- <p *ngFor="let product of productsGroup">
-				{{getJson(product)}}
-				{{product | toJson}}
-			</p> -->
 		</div>
 
 		<div class="pagination-container">

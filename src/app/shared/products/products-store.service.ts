@@ -1,15 +1,10 @@
-import { forwardRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AppModule } from '../../app.module';
 import { IProduct } from './product.interface';
 import { ProductsApiService } from './products-api.service';
 
 @Injectable({
 	providedIn: 'root',
-	// providedIn: forwardRef(() => AppModule),
-	// providedIn: 'platform',
-	// providedIn: 'any',
-	// providedIn: null,
 })
 export class ProductsStoreService {
 	private readonly productsStore$ = new BehaviorSubject<IProduct[] | null>(null);
@@ -26,5 +21,3 @@ export class ProductsStoreService {
 		});
 	}
 }
-
-// export const productsStoreService = new ProductsStoreService();

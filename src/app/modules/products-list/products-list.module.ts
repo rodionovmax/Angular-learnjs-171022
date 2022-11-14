@@ -28,12 +28,6 @@ import { FilterByParamModule } from '../../shared/filter-by-param/filter-by-para
 		MatInputModule,
 		FilterByParamModule,
 	],
-	// providers: [
-	// 	{
-	// 		provide: ProductsStoreService,
-	// 		useValue: {},
-	// 	}
-	// ],
 	exports: [ProductsListComponent],
 })
 export class ProductsListModule {}
