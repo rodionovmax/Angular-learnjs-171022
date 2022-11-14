@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { productMock } from '../../shared/products/product.mock';
 
@@ -10,4 +11,11 @@ import { productMock } from '../../shared/products/product.mock';
 })
 export class ProductComponent {
 	readonly product$ = of(productMock);
+
+	constructor(private readonly router: Router, private readonly activatedRoute: ActivatedRoute) {}
+
+	onNavigateDescrition() {
+		// this.router.navigate(['./description'], {relativeTo: this.activatedRoute});
+		this.router.navigateByUrl(this.router.createUrlTree(['./description'], { relativeTo: this.activatedRoute }));
+	}
 }

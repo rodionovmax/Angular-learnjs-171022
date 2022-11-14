@@ -13,7 +13,7 @@ interface ICarouselContext<T> {
 	selector: '[appCarousel]',
 })
 export class CarouselDirective<T> implements OnInit, OnDestroy {
-	@Input() set appCarousel(items: T[] | undefined) {
+	@Input() set appCarouselOf(items: T[] | undefined) {
 		if (!items?.length) {
 			this.viewContainer.clear();
 

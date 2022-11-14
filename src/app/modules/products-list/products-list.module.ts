@@ -12,6 +12,7 @@ import { CarouselModule } from '../../shared/carousel/carousel.module';
 import { PaginationModule } from '../../shared/pagination/pagination.module';
 import { ToJsonModule } from '../../shared/to-json/to-json.module';
 import { FilterByParamModule } from '../../shared/filter-by-param/filter-by-param.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [ProductsListComponent, ProductCardComponent],
@@ -27,6 +28,7 @@ import { FilterByParamModule } from '../../shared/filter-by-param/filter-by-para
 		ToJsonModule,
 		MatInputModule,
 		FilterByParamModule,
+		RouterModule,
 	],
 	exports: [ProductsListComponent],
 })

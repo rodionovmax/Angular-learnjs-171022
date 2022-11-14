@@ -5,21 +5,21 @@
 			price | currency: 'USD':'symbol-narrow':'1.0-0'
 		}}</mat-card-subtitle>
 	</mat-card-header>
-	<div class="galerey">
-		<ng-template
-			let-image
-			let-next="next"
-			let-back="back"
-			[appCarousel]="product?.images"
-		>
-			<button mat-icon-button (click)="back()">
-				<mat-icon> chevron_left </mat-icon>
-			</button>
-			<img mat-card-image alt="Product photo" [src]="image.url" />
-			<button mat-icon-button (click)="next()">
-				<mat-icon> chevron_right </mat-icon>
-			</button>
-		</ng-template>
+	<div
+		*appCarousel="
+			let image of product?.images;
+			let next = next;
+			let back = back
+		"
+		class="galerey"
+	>
+		<button mat-icon-button (click)="back()">
+			<mat-icon> chevron_left </mat-icon>
+		</button>
+		<img mat-card-image alt="Product photo" [src]="image.url" />
+		<button mat-icon-button (click)="next()">
+			<mat-icon> chevron_right </mat-icon>
+		</button>
 	</div>
 	<div>
 		<p>Отзывы: {{ feedbacksCount }}</p>

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IProduct } from '../../shared/products/product.interface';
 import { ProductsStoreService } from '../../shared/products/products-store.service';
@@ -11,7 +12,8 @@ import { ProductsStoreService } from '../../shared/products/products-store.servi
 })
 export class ProductsListComponent implements OnInit {
 	readonly products$: Observable<IProduct[] | null> = this.productsStoreService.products$;
-	constructor(private readonly productsStoreService: ProductsStoreService) {}
+
+	constructor(private readonly productsStoreService: ProductsStoreService, private readonly router: Router) {}
 
 	ngOnInit() {
 		this.productsStoreService.loadProducts();
@@ -19,5 +21,11 @@ export class ProductsListComponent implements OnInit {
 
 	trackBy(_index: number, product: IProduct): string {
 		return product._id;
+	}
+
+	onProductNavigate() {
+		console.log('navigate');
+		// this.router.navigate(['/product']);
+		// this.router.navigateByUrl('/product');
 	}
 }

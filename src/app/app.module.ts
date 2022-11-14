@@ -10,7 +10,12 @@ import { SidenavModule } from './components/sidenav/sidenav.module';
 import { MatListModule } from '@angular/material/list';
 import { NgClassModule } from './shared/ng-class/ng-class.module';
 import { InsertShadowModule } from './shared/insert-shadow/insert-shadow.module';
-import { ProductModule } from './modules/product/product.module';
+import { baseUrl } from './shared/base-url/base-url.const';
+import { BASE_URL } from './shared/base-url/base-url.token';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BaseUrlInterceptor } from './shared/base-url/base-url.interceptor';
+import { RequestErrorInterceptor } from './shared/request-error/request-error.interceptor';
+import { NotFoundModule } from './modules/not-found/not-found.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -19,13 +24,32 @@ import { ProductModule } from './modules/product/product.module';
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		HeaderModule,
-		ProductsListModule,
 		SidenavModule,
 		MatListModule,
 		NgClassModule,
 		InsertShadowModule,
-		ProductModule,
+		HttpClientModule,
+	],
+	providers: [
+		// {
+		// 	provide: BASE_URL,
+		// 	useValue: baseUrl,
+		// }
+		// HttpClient,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: BaseUrlInterceptor,
+			multi: true,
+		},
+		// {
+		// 	provide: HTTP_INTERCEPTORS,
+		// 	useClass: RequestErrorInterceptor,
+		// 	multi: true,
+		// },
 	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+// request: BaseUrlInterceptor -> RequestErrorInterceptor
+// responce: RequestErrorInterceptor -> BaseUrlInterceptor
