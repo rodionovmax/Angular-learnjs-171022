@@ -12,38 +12,22 @@ import { ProductsListModule } from './modules/products-list/products-list.module
 const routes: Routes = [
 	{
 		path: '',
-		// component: ProductsListComponent,
 		redirectTo: '/products',
 		pathMatch: 'full',
 	},
 	{
-		path: 'products', // http://localhost:4200/products => segments: ['products']
+		path: 'products',
 		component: ProductsListComponent,
-	},
-	{
-		path: 'product',
-		redirectTo: 'products',
-		pathMatch: 'full',
-	},
-	{
-		path: 'product/root',
-		redirectTo: 'products',
-		pathMatch: 'full',
 	},
 	{
 		path: 'product',
 		component: ProductComponent,
 		children: [
-			// {
-			// 	path: '',
-			// 	redirectTo: 'products',
-			// 	pathMatch: 'full',
-			// },
-			// {
-			// 	path: 'root',
-			// 	redirectTo: 'products',
-			// pathMatch: 'full',
-			// },
+			{
+				path: '',
+				redirectTo: 'description',
+				pathMatch: 'full',
+			},
 			{
 				path: 'type',
 				component: TypeComponent,
@@ -52,12 +36,8 @@ const routes: Routes = [
 				path: 'description',
 				component: DescriptionComponent,
 			},
-		] as Routes,
+		],
 	},
-	// {
-	// 	path: 'products/list', // http://localhost:4200/products/list => segments: ['products', 'list']
-	// 	component: ProductsListComponent,
-	// },
 	{
 		path: '**',
 		component: NotFoundComponent,

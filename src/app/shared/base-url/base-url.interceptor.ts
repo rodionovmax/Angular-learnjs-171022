@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse } from '@angular/common/http';
-import { map, Observable, tap } from 'rxjs';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { BASE_URL } from './base-url.token';
-import { IProductDto } from '../products/product-dto.interface';
 
 @Injectable()
 export class BaseUrlInterceptor implements HttpInterceptor {
@@ -14,13 +13,5 @@ export class BaseUrlInterceptor implements HttpInterceptor {
 		});
 
 		return httpHandler.handle(newRequest);
-		// .pipe(
-		// map((responce: HttpEvent<any>): HttpEvent<any> => responce instanceof HttpResponse
-		//   ? responce.clone({
-		//     body: responce.body.data.items,
-		//   })
-		//   : responce
-		// ),
-		// );
 	}
 }

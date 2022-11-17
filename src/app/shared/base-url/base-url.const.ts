@@ -1,1 +1,1 @@
-export const baseUrl = 'https://course-angular.javascript.ru/api'; // `${baseUrl}/products`
+export const baseUrl = 'https://course-angular.javascript.ru/api';
