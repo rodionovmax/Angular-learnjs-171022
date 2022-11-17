@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IProduct } from '../../shared/products/product.interface';
@@ -13,7 +13,12 @@ import { ProductsStoreService } from '../../shared/products/products-store.servi
 export class ProductsListComponent implements OnInit {
 	readonly products$: Observable<IProduct[] | null> = this.productsStoreService.products$;
 
-	constructor(private readonly productsStoreService: ProductsStoreService, private readonly router: Router) {}
+	constructor(
+		private readonly productsStoreService: ProductsStoreService,
+		@Inject('name') private readonly name: string,
+	) {
+		console.log(this.name);
+	}
 
 	ngOnInit() {
 		this.productsStoreService.loadProducts();

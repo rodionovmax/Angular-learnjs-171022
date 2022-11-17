@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { NotFoundModule } from './modules/not-found/not-found.module';
-import { DescriptionComponent } from './modules/product/description/description.component';
-import { ProductComponent } from './modules/product/product.component';
-import { ProductModule } from './modules/product/product.module';
-import { TypeComponent } from './modules/product/type/type.component';
-import { ProductsListComponent } from './modules/products-list/products-list.component';
-import { ProductsListModule } from './modules/products-list/products-list.module';
+import { CustomPreloading } from './shared/custom-preloading/custom-preloading';
 
 const routes: Routes = [
 	{
@@ -17,35 +12,62 @@ const routes: Routes = [
 	},
 	{
 		path: 'products',
-		component: ProductsListComponent,
+		data: {
+			needPreloading: true,
+		},
+		// component: ProductsListComponent,
+		loadChildren: () => import('./modules/products-list/products-list.module').then(m => m.ProductsListModule),
+		// children: [
+		// {
+		// path: '',
+		// component: ProductsListComponent,
+		// }
+		// ] // child routes
 	},
 	{
 		path: 'product',
-		component: ProductComponent,
-		children: [
-			{
-				path: '',
-				redirectTo: 'description',
-				pathMatch: 'full',
-			},
-			{
-				path: 'type',
-				component: TypeComponent,
-			},
-			{
-				path: 'description',
-				component: DescriptionComponent,
-			},
-		],
+		// path: 'product/:id',
+		loadChildren: () => import('./modules/product/product.module').then(m => m.ProductModule),
+		// component: ProductComponent,
+		// children: [
+		// 	{
+		// 		path: '',
+		// 		redirectTo: 'description',
+		// 		pathMatch: 'full',
+		// 	},
+		// 	{
+		// 		path: 'type',
+		// 		component: TypeComponent,
+		// 	},
+		// 	{
+		// 		path: 'description',
+		// 		component: DescriptionComponent,
+		// 	},
+		// ],
 	},
 	{
 		path: '**',
 		component: NotFoundComponent,
 	},
+	// {
+	// 	path: 'root/:id',
+	// 	component: TypeComponent,
+	// },
+	// {
+	// 	path: ':id/root',
+	// 	redirectTo: 'root/:id',
+	// 	pathMatch: 'full',
+	// },
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes), NotFoundModule, ProductsListModule, ProductModule],
+	imports: [
+		RouterModule.forRoot(routes, {
+			// preloadingStrategy: PreloadAllModules,
+			preloadingStrategy: CustomPreloading,
+		}),
+		NotFoundModule,
+	],
 	exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -13,6 +13,7 @@ import { PaginationModule } from '../../shared/pagination/pagination.module';
 import { ToJsonModule } from '../../shared/to-json/to-json.module';
 import { FilterByParamModule } from '../../shared/filter-by-param/filter-by-param.module';
 import { RouterModule } from '@angular/router';
+import { ProductsListRoutingModule } from './products-list-routing.module';
 
 @NgModule({
 	declarations: [ProductsListComponent, ProductCardComponent],
@@ -29,6 +30,13 @@ import { RouterModule } from '@angular/router';
 		MatInputModule,
 		FilterByParamModule,
 		RouterModule,
+		ProductsListRoutingModule,
+	],
+	providers: [
+		{
+			provide: 'name',
+			useValue: 'ProductsListModule',
+		},
 	],
 	exports: [ProductsListComponent],
 })

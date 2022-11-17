@@ -18,8 +18,8 @@
 		<div class="card-container">
 			<app-product-card
 				*ngFor="let product of productsGroup; trackBy: trackBy"
-				routerLink="/product"
 				class="product"
+				[routerLink]="'/product/' + product._id"
 				[product]="product"
 			></app-product-card>
 		</div>
