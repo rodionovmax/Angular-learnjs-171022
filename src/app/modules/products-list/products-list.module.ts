@@ -14,6 +14,8 @@ import { ToJsonModule } from '../../shared/to-json/to-json.module';
 import { FilterByParamModule } from '../../shared/filter-by-param/filter-by-param.module';
 import { RouterModule } from '@angular/router';
 import { ProductsListRoutingModule } from './products-list-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CounterInputModule } from '../../shared/counter-input/counter-input.module';
 
 @NgModule({
 	declarations: [ProductsListComponent, ProductCardComponent],
@@ -31,6 +33,9 @@ import { ProductsListRoutingModule } from './products-list-routing.module';
 		FilterByParamModule,
 		RouterModule,
 		ProductsListRoutingModule,
+		ReactiveFormsModule,
+		FormsModule,
+		CounterInputModule,
 	],
 	providers: [
 		{

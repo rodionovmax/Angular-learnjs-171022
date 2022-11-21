@@ -14,7 +14,7 @@ export class FilterByParamPipe implements PipeTransform {
 			const propertyValue = item[searchingProperty];
 
 			return isString(propertyValue)
-				? propertyValue.toUpperCase().includes((searchValue as unknown as string).toUpperCase())
+				? propertyValue.toUpperCase().includes((searchValue as unknown as string)?.toUpperCase())
 				: propertyValue === searchValue;
 		});
 	}
