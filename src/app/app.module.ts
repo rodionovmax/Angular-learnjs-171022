@@ -39,13 +39,3 @@ import { BaseUrlInterceptor } from './shared/base-url/base-url.interceptor';
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-// NullInjector
-
-// PlatformInjector
-
-// RootInjector(AppModuleInjector)
-
-// ProductsListModuleInjector | ProductModuleInjector
-
-// ElementInjector
