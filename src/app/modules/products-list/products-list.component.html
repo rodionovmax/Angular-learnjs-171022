@@ -7,23 +7,7 @@
 	<input matInput [(ngModel)]="searchValue" />
 </mat-form-field>
 
-<!-- <app-counter-input [formControl]="counterControl" [step]="10"></app-counter-input>
-{{counterControl.value}} -->
-<app-counter-input [step]="10" [(ngModel)]="counter"></app-counter-input>
-{{ counter }}
-
 <div *ngIf="products$ | async as products; else loader" class="container">
-	<!-- <ng-container
-		*appPagination="
-			let productsGroup of products | filterByParam: (searchControlValue$ | async) :'name';
-			elementsSize: 4;
-			let allIndexes = allIndexes;
-			let activeIndex = index;
-			let nextItem = nextItem;
-			let backItem = backItem;
-			let selectIndex = selectIndex
-		"
-	> -->
 	<ng-container
 		*appPagination="
 			let productsGroup of products | filterByParam: searchValue:'name';

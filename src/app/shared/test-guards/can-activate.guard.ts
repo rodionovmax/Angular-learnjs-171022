@@ -12,11 +12,6 @@ export class CanActivateGuard implements CanActivate {
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot,
 	): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-		console.log(route, state);
-
-		// this.router.navigate(['/products']);
-
 		return window.prompt('Хотите посетить данную страницу?') === 'Y' || this.router.createUrlTree(['/products']);
-		// return false;
 	}
 }
