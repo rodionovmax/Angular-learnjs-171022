@@ -10,8 +10,12 @@ import { IProduct } from './product.interface';
 export class ProductsApiService {
 	constructor(private readonly httpClient: HttpClient) {}
 
-	getProducts$(): Observable<IProduct[]> {
-		return this.httpClient.get<IProductDto>(`/products/suggestion`).pipe(map(({ data }) => data.items));
+	getProducts$(subCategoryName: string | null): Observable<IProduct[]> {
+		return this.httpClient
+			.get<IProductDto>(`/products/suggestion`, {
+				params: subCategoryName ? { subCat: subCategoryName } : {},
+			})
+			.pipe(map(({ data }) => data.items));
 	}
 
 	getProduct$(id: string): Observable<IProduct | undefined> {

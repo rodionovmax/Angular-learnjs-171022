@@ -18,6 +18,7 @@ import { ProductsListRoutingModule } from './products-list-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CounterInputModule } from '../../shared/counter-input/counter-input.module';
 import { ProductsFilterComponent } from './products-filter/products-filter.component';
+import { ValidationDirectivesModule } from '../../shared/validation/directives/validation-directives.module';
 
 @NgModule({
 	declarations: [ProductsListComponent, ProductCardComponent, ProductsFilterComponent],
@@ -39,6 +40,7 @@ import { ProductsFilterComponent } from './products-filter/products-filter.compo
 		FormsModule,
 		CounterInputModule,
 		MatCheckboxModule,
+		ValidationDirectivesModule,
 	],
 	providers: [
 		{
