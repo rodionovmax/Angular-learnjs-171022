@@ -3,16 +3,16 @@
 		<div
 			*appCarousel="
 				let img of product.images;
-				let nextItem = nextItem;
-				let backItem = backItem
+				let nextItem = next;
+				let backItem = back
 			"
 			class="galerey"
 		>
-			<button mat-icon-button (click)="backItem()">
+			<button mat-icon-button (click)="nextItem()">
 				<mat-icon> chevron_left </mat-icon>
 			</button>
 			<img mat-card-image alt="Product photo" [src]="img.url" />
-			<button mat-icon-button (click)="nextItem()">
+			<button mat-icon-button (click)="backItem()">
 				<mat-icon> chevron_right </mat-icon>
 			</button>
 		</div>
