@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/cor
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, map, Observable, startWith, tap } from 'rxjs';
+import { BrandsService } from '../../shared/brands/brands.service';
 import { IProduct } from '../../shared/products/product.interface';
 import { ProductsStoreService } from '../../shared/products/products-store.service';
 
@@ -12,6 +13,7 @@ import { ProductsStoreService } from '../../shared/products/products-store.servi
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsListComponent implements OnInit {
+	readonly brands$ = this.brandsService.brands$;
 	readonly products$: Observable<IProduct[] | null> = this.productsStoreService.products$;
 	// readonly products$: Observable<IProduct[] | null> = this.activatedRoute.data.pipe(
 	// 	map(({products}) => products),
@@ -32,14 +34,15 @@ export class ProductsListComponent implements OnInit {
 
 	constructor(
 		private readonly productsStoreService: ProductsStoreService,
-		@Inject('name') private readonly name: string,
-	) // private readonly activatedRoute: ActivatedRoute,
-	{
+		private readonly brandsService: BrandsService,
+		@Inject('name') private readonly name: string, // private readonly activatedRoute: ActivatedRoute,
+	) {
 		console.log(this.name);
 	}
 
 	ngOnInit() {
 		this.productsStoreService.loadProducts();
+		this.brandsService.loadBrands(null);
 		this.counterControl.disable();
 
 		setTimeout(() => {
