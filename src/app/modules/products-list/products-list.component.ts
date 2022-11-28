@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, map, Observable, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, map, Observable, takeUntil } from 'rxjs';
 import { BrandsService } from '../../shared/brands/brands.service';
+import { DestroyService } from '../../shared/destroy/destroy.service';
 import { IProduct } from '../../shared/products/product.interface';
 import { ProductsStoreService } from '../../shared/products/products-store.service';
 import { IProductsFilter } from './products-filter.interface';
@@ -11,18 +12,19 @@ import { IProductsFilter } from './products-filter.interface';
 	templateUrl: './products-list.component.html',
 	styleUrls: ['./products-list.component.less'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	providers: [DestroyService],
 })
-export class ProductsListComponent implements OnInit, OnDestroy {
+export class ProductsListComponent implements OnInit {
 	readonly brands$ = this.brandsService.brands$;
 	readonly products$: Observable<IProduct[] | null> = this.productsStoreService.products$;
 
-	private readonly destroy$ = new Subject<void>();
 	private readonly _searchText$ = new BehaviorSubject<string>('');
 
 	constructor(
 		private readonly productsStoreService: ProductsStoreService,
 		private readonly brandsService: BrandsService,
 		private readonly activatedRoute: ActivatedRoute,
+		private readonly destroy$: DestroyService,
 	) {}
 
 	get searchText$(): Observable<string> {
@@ -31,11 +33,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.listenSubCategoryIdFromUrl();
-	}
-
-	ngOnDestroy() {
-		this.destroy$.next();
-		this.destroy$.complete();
 	}
 
 	onFilterChange(filter: IProductsFilter) {

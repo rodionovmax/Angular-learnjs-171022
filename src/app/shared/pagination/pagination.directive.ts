@@ -9,6 +9,7 @@ import {
 	ViewContainerRef,
 } from '@angular/core';
 import { BehaviorSubject, map, Subject, takeUntil } from 'rxjs';
+import { DestroyService } from '../destroy/destroy.service';
 import { groupingItemsByElementsSize } from './grouping-items-by-elements-size';
 
 interface IPaginationContext<T> {
@@ -23,17 +24,21 @@ interface IPaginationContext<T> {
 
 @Directive({
 	selector: '[appPagination]',
+	providers: [DestroyService],
 })
-export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
+export class PaginationDirective<T> implements OnInit, OnChanges {
 	@Input() appPaginationElementsSize = 1;
 	@Input() appPaginationOf: T[] | undefined | null;
 
 	private groupedItems: Array<T[]> | T[] = [];
 
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
-	private readonly destroy$ = new Subject<void>();
 
-	constructor(private viewContainerRef: ViewContainerRef, private templateRef: TemplateRef<IPaginationContext<T>>) {}
+	constructor(
+		private viewContainerRef: ViewContainerRef,
+		private templateRef: TemplateRef<IPaginationContext<T>>,
+		private destroy$: DestroyService,
+	) {}
 
 	ngOnChanges({ appPaginationOf, appPaginationElementsSize }: SimpleChanges): void {
 		if (appPaginationOf || appPaginationElementsSize) {
@@ -50,11 +55,6 @@ export class PaginationDirective<T> implements OnInit, OnChanges, OnDestroy {
 
 	ngOnInit() {
 		this.listenCurrentIndexChange();
-	}
-
-	ngOnDestroy() {
-		this.destroy$.next();
-		this.destroy$.complete();
 	}
 
 	private getGroupedItems(items: T[]): Array<T[]> | T[] {
