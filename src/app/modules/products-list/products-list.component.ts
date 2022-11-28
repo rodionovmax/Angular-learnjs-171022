@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, ValidationErrors, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, Observable, startWith, tap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { debounceTime, distinctUntilChanged, map, Observable, startWith, Subject, takeUntil, tap } from 'rxjs';
 import { BrandsService } from '../../shared/brands/brands.service';
 import { IProduct } from '../../shared/products/product.interface';
 import { ProductsStoreService } from '../../shared/products/products-store.service';
@@ -17,6 +18,8 @@ import { IProductsFilter } from './products-filter.interface';
 export class ProductsListComponent implements OnInit {
 	readonly brands$ = this.brandsService.brands$;
 	readonly products$: Observable<IProduct[] | null> = this.productsStoreService.products$;
+
+	private readonly destroy$ = new Subject<void>();
 
 	readonly searchControl = new FormControl('', {
 		validators: [Validators.minLength(3), Validators.required],
@@ -48,14 +51,15 @@ export class ProductsListComponent implements OnInit {
 	constructor(
 		private readonly productsStoreService: ProductsStoreService,
 		private readonly brandsService: BrandsService,
-	) // private changeDetectorRef: ChangeDetectorRef,
-	{}
+		private readonly activatedRoute: ActivatedRoute, // private changeDetectorRef: ChangeDetectorRef,
+	) {}
 
 	ngOnInit() {
 		// console.log(Validators.minLength(3)(new FormControl('')));
 		// console.log(Validators.minLength(3)(new FormControl(' ')));
-		this.productsStoreService.loadProducts(null);
-		this.brandsService.loadBrands(null);
+		// this.productsStoreService.loadProducts(null);
+		// this.brandsService.loadBrands(null);
+		this.listenSubCategoryIdFromUrl();
 	}
 
 	onFilterChange(filter: IProductsFilter) {
@@ -64,5 +68,17 @@ export class ProductsListComponent implements OnInit {
 
 	trackBy(_index: number, product: IProduct): string {
 		return product._id;
+	}
+
+	private listenSubCategoryIdFromUrl() {
+		this.activatedRoute.paramMap
+			.pipe(
+				map(paramMap => paramMap.get('subCategoryId')),
+				takeUntil(this.destroy$),
+			)
+			.subscribe(subCategoryId => {
+				this.productsStoreService.loadProducts(subCategoryId);
+				this.brandsService.loadBrands(subCategoryId);
+			});
 	}
 }
