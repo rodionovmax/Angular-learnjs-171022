@@ -12,7 +12,7 @@ export class ProductsApiService {
 
 	getProducts$(subCategoryName: string | null): Observable<IProduct[]> {
 		return this.httpClient
-			.get<IProductDto>(`/products/suggestion`, {
+			.get<IProductDto>(`/products`, {
 				params: subCategoryName ? { subCat: subCategoryName } : {},
 			})
 			.pipe(map(({ data }) => data.items));

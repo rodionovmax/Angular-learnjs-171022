@@ -1,15 +1,10 @@
-<form class="filter" [formGroup]="filterForm">
-	<mat-form-field appearance="fill" class="example-full-width">
+<form [formGroup]="filterForm">
+	<mat-form-field appearance="fill">
 		<mat-label>Search</mat-label>
-		<!-- <input matInput [formControl]="nameControl"/> -->
-		<input matInput formControlName="name" />
+		<input formControlName="name" matInput />
 	</mat-form-field>
 
 	<div formArrayName="brands" class="checkbox-container">
-		<!-- <mat-checkbox
-			*ngFor="let brand of brands; let index = index"
-			[formControl]="getBrandControl(index)"
-		> -->
 		<mat-checkbox
 			*ngFor="let brand of brands; let index = index"
 			[formControlName]="index"
@@ -21,12 +16,10 @@
 	<div formGroupName="priceRange" class="price-range">
 		<div>
 			Min
-			<!-- <app-counter-input [formControl]="priceRangeMinControl"></app-counter-input> -->
 			<app-counter-input formControlName="min"></app-counter-input>
 		</div>
 		<div>
 			Max
-			<!-- <app-counter-input [formControl]="priceRangeMaxControl"></app-counter-input> -->
 			<app-counter-input formControlName="max"></app-counter-input>
 		</div>
 	</div>

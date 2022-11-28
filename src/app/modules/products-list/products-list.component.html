@@ -1,26 +1,3 @@
-<!-- <mat-form-field appearance="fill" class="example-full-width"> -->
-<!-- <mat-label>Search</mat-label> -->
-<!-- <input [formControl]="searchControl"/> -->
-<!-- </mat-form-field> -->
-<!-- <h1>formControl: {{(searchControlErrors$ | async) | json}}</h1> -->
-<!-- <h1>formControl: {{searchControl.errors | json}}</h1> -->
-
-<!-- <mat-form-field appearance="fill" class="example-full-width"> -->
-<!-- <mat-label>Search</mat-label> -->
-<!-- <input
-		#inputElement
-		#inputElementNgModel="ngModel"
-		required
-		[minlength]="3"
-		appIsStringAsyncValidator
-		[ngModelOptions]="{
-			updateOn: 'blur'
-		}"
-		[(ngModel)]="searchValue"
-	/> -->
-<!-- @Directive({exportAs: 'ngModel'}) export class ngModel ... -> #inputElementNgModel="ngModel" -->
-<!-- </mat-form-field> -->
-<!-- <h1>ngModel: {{inputElementNgModel.errors | json}}</h1> -->
 <app-products-filter
 	[brands]="brands$ | async"
 	(changeFilter)="onFilterChange($event)"
@@ -30,7 +7,7 @@
 	<ng-container
 		*appPagination="
 			let productsGroup of products
-				| filterByParam: (searchControlValue$ | async):'name';
+				| filterByParam: (searchText$ | async):'name';
 			elementsSize: 4;
 			let allIndexes = allIndexes;
 			let activeIndex = index;
