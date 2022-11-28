@@ -11,6 +11,18 @@ import { NgClassModule } from './shared/ng-class/ng-class.module';
 import { InsertShadowModule } from './shared/insert-shadow/insert-shadow.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BaseUrlInterceptor } from './shared/base-url/base-url.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { storeReducer } from './store/reducer';
+import { storeEffects } from './store/effects';
+import { environment } from '../environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+
+const devtoolsInstuments = [];
+
+if (!environment.production) {
+	devtoolsInstuments.push(StoreDevtoolsModule.instrument());
+}
 
 @NgModule({
 	declarations: [AppComponent],
@@ -24,6 +36,9 @@ import { BaseUrlInterceptor } from './shared/base-url/base-url.interceptor';
 		NgClassModule,
 		InsertShadowModule,
 		HttpClientModule,
+		StoreModule.forRoot(storeReducer),
+		EffectsModule.forRoot(storeEffects),
+		...devtoolsInstuments,
 	],
 	providers: [
 		{

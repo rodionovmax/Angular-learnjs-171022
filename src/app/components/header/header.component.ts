@@ -10,5 +10,5 @@ import { IApplicationConfig } from '../../shared/application-config/application-
 export class HeaderComponent {
 	@Input() applicationConfig: IApplicationConfig | undefined;
 
-	@Output() menuClick = new EventEmitter<string | undefined>(true);
+	@Output() menuClick = new EventEmitter<void>();
 }

@@ -1,10 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { BehaviorSubject, map, Observable, takeUntil } from 'rxjs';
 import { BrandsService } from '../../shared/brands/brands.service';
 import { DestroyService } from '../../shared/destroy/destroy.service';
 import { IProduct } from '../../shared/products/product.interface';
 import { ProductsStoreService } from '../../shared/products/products-store.service';
+import { loadProducts } from '../../store/products/products.actions';
+import { productsSelector } from '../../store/products/products.selectors';
+import { IState } from '../../store/reducer';
 import { IProductsFilter } from './products-filter.interface';
 
 @Component({
@@ -16,15 +20,20 @@ import { IProductsFilter } from './products-filter.interface';
 })
 export class ProductsListComponent implements OnInit {
 	readonly brands$ = this.brandsService.brands$;
-	readonly products$: Observable<IProduct[] | null> = this.productsStoreService.products$;
+	// readonly products$: Observable<IProduct[] | null> = this.productsStoreService.products$;
+	readonly products$: Observable<IProduct[] | undefined> = this.store$.pipe(
+		// map(({products: {entities, ids}}): IProduct[] => ids.map(id => entities[id] as IProduct))
+		select(productsSelector),
+	);
 
 	private readonly _searchText$ = new BehaviorSubject<string>('');
 
 	constructor(
-		private readonly productsStoreService: ProductsStoreService,
+		// private readonly productsStoreService: ProductsStoreService,
 		private readonly brandsService: BrandsService,
 		private readonly activatedRoute: ActivatedRoute,
 		private readonly destroy$: DestroyService,
+		private readonly store$: Store<IState>,
 	) {}
 
 	get searchText$(): Observable<string> {
@@ -50,7 +59,8 @@ export class ProductsListComponent implements OnInit {
 				takeUntil(this.destroy$),
 			)
 			.subscribe(subCategoryId => {
-				this.productsStoreService.loadProducts(subCategoryId);
+				// this.productsStoreService.loadProducts(subCategoryId);
+				this.store$.dispatch(loadProducts(subCategoryId));
 				this.brandsService.loadBrands(subCategoryId);
 			});
 	}

@@ -1,9 +1,10 @@
 <mat-toolbar color="primary">
 	<button
 		mat-icon-button
+		test-id="header-menu-button"
 		aria-label="Example icon-button with menu icon"
 		class="example-icon"
-		(click)="menuClick.next(applicationConfig?.title)"
+		(click)="menuClick.emit()"
 	>
 		<mat-icon>menu</mat-icon>
 	</button>

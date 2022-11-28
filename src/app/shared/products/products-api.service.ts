@@ -10,7 +10,7 @@ import { IProduct } from './product.interface';
 export class ProductsApiService {
 	constructor(private readonly httpClient: HttpClient) {}
 
-	getProducts$(subCategoryName: string | null): Observable<IProduct[]> {
+	getProducts$(subCategoryName?: string | null): Observable<IProduct[]> {
 		return this.httpClient
 			.get<IProductDto>(`/products`, {
 				params: subCategoryName ? { subCat: subCategoryName } : {},
