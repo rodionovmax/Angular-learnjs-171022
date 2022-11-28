@@ -1,6 +1,9 @@
-<mat-drawer-container autosize class="example-container">
-	<mat-drawer #drawer mode="side" class="example-sidenav">
-		<ng-container #viewport></ng-container>
+<mat-drawer-container autosize class="drawer-container">
+	<mat-drawer #drawer mode="side" class="sidenav">
+		<app-categories-select
+			[categories]="categories$ | async"
+			(selectSubCategory)="onSubCategorySelect($event)"
+		></app-categories-select>
 	</mat-drawer>
 
 	<div #divElement class="example-sidenav-content">
