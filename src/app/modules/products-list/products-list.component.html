@@ -1,8 +1,17 @@
 <div class="container">
-	<app-product-card
+	<!--<app-product-card
 		class="product"
 		(buyClick)="onBuyClick($event)"
 		(click)="buyClickList.emit(productId)"
+	></app-product-card>-->
+	<app-product-card
+		class="product"
+		[product]="productMock"
+		(productBuy)="$event ? onBuyClick($event) : 'Non'"
+		(click)="buyClickList.emit(productId)"
 	></app-product-card>
-	<app-product-card class="product"></app-product-card>
+	<app-product-card
+		class="product"
+		[product]="productMock"
+	></app-product-card>
 </div>

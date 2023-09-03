@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { productMock } from '../../shared/products/product.mock';
 
 @Component({
 	selector: 'app-products-list',
@@ -7,9 +8,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ProductsListComponent {
 	productId = '';
-	@Output() buyClickList = new EventEmitter<string | undefined>();
+	@Output() buyClickList = new EventEmitter<string>();
 
 	onBuyClick(value: string) {
 		this.productId = value;
 	}
+
+	protected readonly productMock = productMock;
 }

@@ -40,7 +40,7 @@ export class SidenavComponent {
 	// })
 	// }
 
-	togleDrawer() {
+	toggleDrawer() {
 		this.matDrawerInstance.toggle();
 		// console.log(this.matDrawerTest);
 	}

@@ -8,8 +8,20 @@ import { productMock } from '../../../shared/products/product.mock';
 	styleUrls: ['./product-card.component.less'],
 })
 export class ProductCardComponent {
-	readonly product = productMock;
-	@Output() buyClick = new EventEmitter<string>();
+	@Input() product: IProduct | undefined;
+	@Output() productBuy = new EventEmitter<IProduct['_id'] | undefined>();
+
+	get firstImgUrl(): string {
+		return this.product?.images[0].url || '';
+	}
+
+	get price(): string {
+		return this.product?.price.toString() || '-';
+	}
+
+	get feedbacksCount(): string {
+		return this.product?.feedbacksCount.toString() || '-';
+	}
 
 	onProductBuy(event: Event) {
 		event.stopPropagation();
