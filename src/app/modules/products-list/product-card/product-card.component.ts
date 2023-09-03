@@ -9,6 +9,7 @@ import { productMock } from '../../../shared/products/product.mock';
 })
 export class ProductCardComponent {
 	readonly product = productMock;
+	@Output() buyClick = new EventEmitter<string>();
 
 	onProductBuy(event: Event) {
 		event.stopPropagation();

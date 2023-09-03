@@ -1,4 +1,8 @@
 <div class="container">
-        <app-product-card class="product"></app-product-card>
-        <app-product-card class="product"></app-product-card>
+	<app-product-card
+		class="product"
+		(buyClick)="onBuyClick($event)"
+		(click)="buyClickList.emit(productId)"
+	></app-product-card>
+	<app-product-card class="product"></app-product-card>
 </div>
