@@ -1,4 +1,4 @@
-<mat-drawer-container autosize class="example-container">
+<mat-drawer-container autosize class='example-container'>
 	<!-- <mat-drawer
       #drawer
       class="example-sidenav"
@@ -6,19 +6,29 @@
       [opened]="isDrawerOpened"
       (openedChange)="isDrawerOpenedChange.emit($event)"
     > -->
-	<mat-drawer #drawer mode="side" class="example-sidenav">
-		<p>Auto-resizing sidenav</p>
+	<mat-drawer #drawer mode='side' class='example-sidenav'>
+		<p #p>Auto-resizing sidenav 1</p>
+		<p #p>Auto-resizing sidenav 2</p>
+		<p #p>Auto-resizing sidenav 3</p>
+		<p #p>Auto-resizing sidenav 4</p>
+		<p #p>Auto-resizing sidenav 5</p>
+		<!--        <div #viewport></div>-->
+		<ng-container #viewport></ng-container>
+		<!--    <ng-content select="navigation"></ng-content>-->
+		<!--    <ng-content select="[role='list']"></ng-content>-->
+		<!--    <ng-content select='p'></ng-content>-->
 	</mat-drawer>
 
-	<div #divElement class="example-sidenav-content">
+	<div #divElement class='example-sidenav-content'>
 		<!-- <button
         type="button"
         mat-button
         (click)="isDrawerOpenedChange.emit(!isDrawerOpened)"
       > -->
-		<button type="button" mat-button (click)="toggleDrawer()">
-			<!-- {{divElement.className}} -->
+		<!--<button type="button" mat-button (click)="toggleDrawer()">
+			&lt;!&ndash; {{divElement.className}} &ndash;&gt;
 			Toggle sidenav
-		</button>
+		</button>-->
+		<ng-content></ng-content>
 	</div>
 </mat-drawer-container>
