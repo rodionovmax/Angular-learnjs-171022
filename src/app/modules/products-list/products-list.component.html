@@ -1,17 +1,40 @@
-<div class="container">
-	<!--<app-product-card
-		class="product"
-		(buyClick)="onBuyClick($event)"
-		(click)="buyClickList.emit(productId)"
-	></app-product-card>-->
-	<app-product-card
-		class="product"
-		[product]="productMock"
-		(productBuy)="$event ? onBuyClick($event) : 'Non'"
-		(click)="buyClickList.emit(productId)"
-	></app-product-card>
-	<app-product-card
-		class="product"
-		[product]="productMock"
-	></app-product-card>
-</div>
+<!--<ng-template [ngIf]='productMock' [ngIfThen]='data' [ngIfElse]='loader'></ng-template>-->
+<!--<ng-template #data>-->
+<ng-template let-products [ngIf]="productMock && [productMock, productMock]" [ngIfElse]='loader'>
+<!--<ng-template [ngIf]="productMock && [productMock, productMock]" [ngIfElse]='loader' let-products="ngIf" let-defaultContext="$implicit">-->
+<!--<ng-template [appNgIf]="productMock && [productMock, productMock]" let-defaultContext="$implicit" let-products="appNgIf" let-name="name">-->
+<!--<ng-template [appNgIf]="productMock && [productMock, productMock]" let-defaultContext="$implicit" let-products="appNgIf" let-name="toString">-->
+<!--	{{defaultContext}}-->
+<!--	{{defaultContext === products}}-->
+<!--<ng-template [appNgIf]="productMock">-->
+	<div class='container'>
+		<!--<app-product-card
+			class="product"
+			(buyClick)="onBuyClick($event)"
+			(click)="buyClickList.emit(productId)"
+		></app-product-card>-->
+		<!--<app-product-card
+			class='product'
+			[product]='productMock'
+			(productBuy)="$event ? onBuyClick($event) : 'Non'"
+			(click)='buyClickList.emit(productId)'
+		></app-product-card>-->
+		<app-product-card
+			class='product'
+			[product]='products[0]'
+			(productBuy)="$event ? onBuyClick($event) : 'Non'"
+			(click)='buyClickList.emit(productId)'
+		></app-product-card>
+		<!--<app-product-card
+			class='product'
+			[product]='productMock'
+		></app-product-card>-->
+		<app-product-card
+			class='product'
+			[product]='products[1]'
+		></app-product-card>
+	</div>
+</ng-template>
+<ng-template #loader>
+	<mat-spinner></mat-spinner>
+</ng-template>
