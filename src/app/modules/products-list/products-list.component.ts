@@ -26,6 +26,6 @@ export class ProductsListComponent implements OnInit {
 	onProductNavigate() {
 		console.log('navigate');
 		// this.router.navigate(['/product']);
-		// this.router.navigateByUrl('/product');
+		this.router.navigateByUrl('/product');
 	}
 }

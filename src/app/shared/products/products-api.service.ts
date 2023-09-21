@@ -14,5 +14,10 @@ export class ProductsApiService {
 	getProducts$(): Observable<IProduct[]> {
 		// return of({ data: { items: productsMock } }).pipe(map(({ data }) => data.items));
 		return this.httpClient.get<IProductDto>(`/products/suggestion`).pipe(map(({ data }) => data.items));
+		// return this.httpClient.get<IProductDto>(`/products/suggestion`).pipe(map(({ data }) => {
+        //     const _items = data.items;
+        //     console.log(`data items: ${JSON.stringify(_items)}`)
+        //     return _items;
+        // }));
 	}
 }
